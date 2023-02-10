@@ -8,7 +8,9 @@ import com.example.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = new MemberServiceImpl(memberRepository);
+        MemberService memberService = appConfig.memberService(); // appConfig에서 설정된 memberServiceImpl 객체를 줌
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 
