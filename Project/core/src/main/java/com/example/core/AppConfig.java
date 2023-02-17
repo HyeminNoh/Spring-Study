@@ -2,6 +2,7 @@ package com.example.core;
 
 import com.example.core.discount.DiscountPolicy;
 import com.example.core.discount.FixDiscountPolicy;
+import com.example.core.discount.RateDiscountPolicy;
 import com.example.core.member.MemberRepository;
 import com.example.core.member.MemberService;
 import com.example.core.member.MemberServiceImpl;
@@ -27,8 +28,9 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
 
-    public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+    public DiscountPolicy discountPolicy() { // 할인 정책 역할
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy(); // (어떤 정책을 따를지) 구현을 변경
     }
 
 }
