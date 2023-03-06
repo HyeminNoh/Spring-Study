@@ -1,17 +1,23 @@
 package com.example.core.order;
 
+import com.example.core.annotation.MainDiscountPolicy;
 import com.example.core.discount.DiscountPolicy;
 import com.example.core.member.Member;
 import com.example.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
-
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
-//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-//    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired DiscountPolicy rateDiscountPolicy;
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
